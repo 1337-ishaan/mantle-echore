@@ -17,7 +17,7 @@ const StyledNav = styled(FlexRowWrapper)`
   align-items: center;
   background: rgba(255, 255, 255, 0.1);
   padding: 12px;
-  width: 280px;
+  width: 300px;
 
   .th-echore {
     font-family: "Poppins";
@@ -37,8 +37,10 @@ const HomeWrapper = styled.div`
   .t-transaction {
     font-family: "Poppins";
     font-style: normal;
-    padding: 12px;
+    /* padding: 12px; */
+    margin-top: 12px;
     font-weight: 600;
+
     font-size: 12px;
     line-height: 18px;
     color: #ffffff;
@@ -63,10 +65,38 @@ const HomeWrapper = styled.div`
       border-radius: 20px;
     }
     .scroll-wrapper {
-      max-height: 200px;
+      max-height: 160px;
+      /* padding: 0 20px; */
       overflow-y: scroll;
       overflow-x: hidden;
     }
+  }
+  .no-transactions {
+    border-radius: 16px;
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 10px;
+    line-height: 16px;
+    text-align: center;
+    letter-spacing: 0.9px;
+    width: fit-content;
+    height: fit-content;
+    margin: 4px auto;
+    padding: 12px;
+    text-transform: uppercase;
+    color: #adff01;
+    background: #141918;
+    opacity: 0.5;
+  }
+  .transactions-wrapper {
+    padding: 0 20px;
+    width: 80%;
+  }
+  .divider {
+    border: 1px solid #2c2c2e;
+    width: 50%;
+    margin: 8px auto;
   }
 `;
 const Home = ({ switchPage, walletAddress }) => {
@@ -77,8 +107,6 @@ const Home = ({ switchPage, walletAddress }) => {
   const [pendingEvents, setPendingEvents] = React.useState([]);
   const [page, setPage] = React.useState(1);
   const [offset, setOffset] = React.useState(5);
-
-  // https://explorer.testnet.mantle.xyz/api?module=account&action=pendingtxlist&address=coolMode
 
   React.useEffect(() => {
     axios
@@ -107,34 +135,47 @@ const Home = ({ switchPage, walletAddress }) => {
     <HomeWrapper>
       <StyledNav>
         <ArrowLeft onClick={() => switchPage("connect-wallet")} />
-        <Blockies
-          seed={walletAddress}
-          size={10}
-          scale={3}
-          color="#eee"
-          bgColor="#000"
-          spotColor="#abc"
-          className="blockies"
-        />
+        <div
+          onClick={
+            walletAddress.length === 42
+              ? () => switchPage("account")
+              : console.log
+            //     : errNotify
+          }
+        >
+          <Blockies
+            seed={walletAddress}
+            size={10}
+            scale={3}
+            color="#eee"
+            bgColor="#000"
+            spotColor="#abc"
+            className="blockies"
+          />
+        </div>
         <div className="th-echore">ECHORE</div>
       </StyledNav>
 
-      <FlexColumnWrapper>
+      <FlexColumnWrapper className="transactions-wrapper">
         <div className="t-transaction">Processing Transactions</div>
-        {/* {pendingEvents.length > 0 && pendingEvents.map((e) => (
-          <TrxItem
-            amount={e.value}
-            type={
-              e.from === "0x7b08407619f4a0e4135b822caa21237f37e8552c"
-                ? "Withdraw"
-                : "Deposit"
-            }
-            timestamp={false}
-          />
-        ))} */}
+
+        <div className="scroll-wrapper">
+          {pendingEvents.length > 0 ? (
+            pendingEvents.map((e) => (
+              <TrxItem
+                amount={e.value}
+                type={e.from === walletAddress ? "Withdraw" : "Deposit"}
+                timestamp={false}
+              />
+            ))
+          ) : (
+            <div className="no-transactions">NO PROCESSING TRANSACTIONS</div>
+          )}
+        </div>
       </FlexColumnWrapper>
       {/* if "from"  === connected wallet -->  withdraw else deposit*/}
-      <FlexColumnWrapper>
+      <div className="divider" />
+      <FlexColumnWrapper className="transactions-wrapper">
         <div className="t-transaction">Completed Transactions</div>
         <div>
           <table>
@@ -151,18 +192,17 @@ const Home = ({ switchPage, walletAddress }) => {
                 loader={<>loading</>}
               > */}
               <div className="scroll-wrapper">
-                {events.length > 0 &&
+                {events.length > 0 ? (
                   events.map((e) => (
                     <TrxItem
                       amount={e.value}
-                      type={
-                        e.from === "0x7b08407619f4a0e4135b822caa21237f37e8552c"
-                          ? "Withdraw"
-                          : "Deposit"
-                      }
+                      type={e.from === walletAddress ? "Withdraw" : "Deposit"}
                       timestamp={e.timeStamp}
                     />
-                  ))}
+                  ))
+                ) : (
+                  <div className="no-transactions">NO TRANSACTIONS</div>
+                )}
               </div>
               {/* </InfiniteScroll> */}
             </tbody>

@@ -35,18 +35,18 @@ const client = createClient({
 });
 root.render(
   <React.StrictMode>
-    <WagmiConfig client={client}>
+    {/* <WagmiConfig client={client}>
       <RainbowKitProvider
         chains={chains}
         showRecentTransactions={true}
         theme={darkTheme()}
         coolMode
-      >
-        <ToastContainer />
+      > */}
+    {/* <ToastContainer /> */}
 
-        <App />
-      </RainbowKitProvider>
-    </WagmiConfig>
+    <App />
+    {/* </RainbowKitProvider>
+    </WagmiConfig> */}
   </React.StrictMode>
 );
 

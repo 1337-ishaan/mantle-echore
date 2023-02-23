@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ethers } from "ethers";
 import React from "react";
 import styled from "styled-components";
 import ScreenHeader from "../components/common/ScreenHeader";
@@ -6,6 +7,7 @@ import FlexColumnWrapper from "../wrappers/FlexColumnWrapper";
 import FlexRowWrapper from "../wrappers/FlexRowWrapper";
 
 const AccountWrapper = styled.div`
+  padding: 0 24px;
   .t-type {
     font-family: "Poppins";
     font-style: normal;
@@ -18,8 +20,8 @@ const AccountWrapper = styled.div`
     font-family: "Poppins";
     font-style: normal;
     font-weight: 600;
-    font-size: 40px;
-    line-height: 48px;
+    font-size: 16px;
+    /* line-height: 48px; */
     letter-spacing: -1px;
     color: #ffffff;
   }
@@ -27,14 +29,14 @@ const AccountWrapper = styled.div`
     font-family: "Inter";
     font-style: normal;
     font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
+    font-size: 12px;
     text-align: center;
     color: #000000;
     background: #adff01;
     border-radius: 16px;
     height: fit-content;
-    padding: 4px;
+    width: fit-content;
+    padding: 2px;
   }
   ${FlexRowWrapper} {
     align-items: center;
@@ -42,10 +44,9 @@ const AccountWrapper = styled.div`
     padding: 12px;
   }
   .card-wrapper {
-    width: 200px;
-    height: 132px;
+    width: 240px;
+    /* height: 132px; */
     margin: 24px auto;
-    /* left: 1px; */
     top: 0px;
 
     background: rgba(255, 255, 255, 0.1);
@@ -76,11 +77,13 @@ const Account = ({ switchPage, walletAddress }) => {
           <div className="t-type">Total Balance</div>
         </FlexRowWrapper>
         <FlexRowWrapper>
-          <div className="t-value">{balance}</div>
+          <div className="t-value">{ethers.utils.formatEther(balance)}</div>
           <div className="t-token">BIT</div>
         </FlexRowWrapper>
       </FlexColumnWrapper>
     </AccountWrapper>
+    // 0x7b08407619f4a0e4135b822caa21237f37e8552c
+    // 0x88a0c9d6a78ee080a6abe92b6dc85ca9c0b4f766
   );
 };
 

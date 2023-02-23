@@ -8,8 +8,11 @@ const ScreenHeaderWrapper = styled(FlexRowWrapper)`
   padding: 12px 0px;
   align-items: center;
   column-gap: 14px;
+  width: 280px;
+
   .arrow-left {
     width: 12px;
+    cursor: pointer;
   }
   .t-title {
     font-family: "Poppins";

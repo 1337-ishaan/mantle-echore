@@ -11,13 +11,15 @@ import React from "react";
 
 const PageWrapper = styled.div`
   width: 300px;
-  height: 500px;
+  border-radius: 24px;
+  /* height: 500px; */
   display: flex;
-  /* border: 2px solid red; */
+
+  border: 2px solid #eee;
   justify-content: center;
   margin: 10% auto;
   background: #000;
-  padding: 20px;
+  /* padding: 8px; */
 
   /* padding: 20px; */
 
