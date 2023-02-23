@@ -7,7 +7,8 @@ import FlexColumnWrapper from "../wrappers/FlexColumnWrapper";
 import FlexRowWrapper from "../wrappers/FlexRowWrapper";
 
 const AccountWrapper = styled.div`
-  padding: 0 24px;
+  overflow: hidden;
+
   .t-type {
     font-family: "Poppins";
     font-style: normal;
@@ -45,8 +46,9 @@ const AccountWrapper = styled.div`
   }
   .card-wrapper {
     width: 240px;
+
     /* height: 132px; */
-    margin: 24px auto;
+    margin: 24px;
     top: 0px;
 
     background: rgba(255, 255, 255, 0.1);

@@ -11,19 +11,25 @@ import { ethers } from "ethers";
 import InfiniteScroll from "react-infinite-scroller";
 import { fromHex } from "alchemy-sdk";
 import { ReactComponent as ArrowLeft } from "../assets/arrow-left.svg";
+import { ReactComponent as EchoreText } from "../assets/echore-text.svg";
 
 const StyledNav = styled(FlexRowWrapper)`
-  column-gap: 12px;
   align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+  width: 290px;
+
   background: rgba(255, 255, 255, 0.1);
   padding: 12px;
-  width: 300px;
+
+  overflow: hidden;
 
   .th-echore {
     font-family: "Poppins";
     font-style: normal;
     font-weight: 400;
     font-size: 24px;
+    transform: scale(0.6);
     line-height: 29px;
     letter-spacing: 4px;
     color: #ffffff;
@@ -37,27 +43,28 @@ const HomeWrapper = styled.div`
   .t-transaction {
     font-family: "Poppins";
     font-style: normal;
-    /* padding: 12px; */
+    padding: 12px;
     margin-top: 12px;
     font-weight: 600;
-
+    width: 280px;
     font-size: 12px;
     line-height: 18px;
     color: #ffffff;
   }
   table {
-    padding: 8px;
+    padding: 0 8px;
     width: 100%;
     th {
       color: #fff;
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      padding: 8px 20px;
+      /* justify-content: space-between; */
+      padding: 8px 12px;
       font-family: "Poppins";
       font-style: normal;
       font-weight: 600;
       font-size: 10px;
+      gap: 100px;
       line-height: 24px;
       letter-spacing: 1px;
       text-transform: uppercase;
@@ -65,9 +72,10 @@ const HomeWrapper = styled.div`
       border-radius: 20px;
     }
     .scroll-wrapper {
-      max-height: 160px;
+      max-height: 210px;
       /* padding: 0 20px; */
       overflow-y: scroll;
+      width: 100%;
       overflow-x: hidden;
     }
   }
@@ -90,13 +98,17 @@ const HomeWrapper = styled.div`
     opacity: 0.5;
   }
   .transactions-wrapper {
-    padding: 0 20px;
-    width: 80%;
+    /* padding: 0 20px; */
+    /* width: 100%; */
   }
   .divider {
     border: 1px solid #2c2c2e;
     width: 50%;
     margin: 8px auto;
+  }
+  .arrow-left {
+    transform: scale(0.6);
+    cursor: pointer;
   }
 `;
 const Home = ({ switchPage, walletAddress }) => {
@@ -134,8 +146,16 @@ const Home = ({ switchPage, walletAddress }) => {
   return (
     <HomeWrapper>
       <StyledNav>
-        <ArrowLeft onClick={() => switchPage("connect-wallet")} />
+        <div>
+          <ArrowLeft
+            className="arrow-left"
+            onClick={() => switchPage("connect-wallet")}
+          />
+        </div>
+
+        <EchoreText className="th-echore" />
         <div
+          className="blockies"
           onClick={
             walletAddress.length === 42
               ? () => switchPage("account")
@@ -153,7 +173,6 @@ const Home = ({ switchPage, walletAddress }) => {
             className="blockies"
           />
         </div>
-        <div className="th-echore">ECHORE</div>
       </StyledNav>
 
       <FlexColumnWrapper className="transactions-wrapper">

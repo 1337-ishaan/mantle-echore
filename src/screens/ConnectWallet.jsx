@@ -1,26 +1,29 @@
 import React from "react";
-import { ReactComponent as EchoreLoader } from "../assets/echore-loader.svg";
+import EchoreLoader from "../assets/echore-loader.mp4";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import FlexColumnWrapper from "../wrappers/FlexColumnWrapper";
 import styled from "styled-components";
 import { toast } from "react-toastify";
 import Blockies from "react-blockies";
+import { ReactComponent as EchoreText } from "../assets/echore-text.svg";
 
 const ConnectWalletWrapper = styled(FlexColumnWrapper)`
   justify-content: center;
   align-items: center;
   row-gap: 8px;
-  padding: 16px 0;
+  padding-bottom: 48px;
+
   .echore-loader {
     max-width: 300px;
     max-height: 300px;
+    margin-top: 40px;
   }
 
   .t-echore {
     font-family: "Inter";
     font-style: normal;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 24px;
     color: #ffffff;
     letter-spacing: 8px;
     background: #000000;
@@ -36,10 +39,11 @@ const ConnectWalletWrapper = styled(FlexColumnWrapper)`
     font-family: "Poppins";
     font-style: normal;
     font-weight: 300;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 24px;
+    padding: 0 12px;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     color: #c1c7cd;
   }
 
@@ -47,6 +51,7 @@ const ConnectWalletWrapper = styled(FlexColumnWrapper)`
     display: flex;
     align-items: center;
     column-gap: 8px;
+    margin-top: 8px;
 
     .go-to-button {
       /* background: #34d991;
@@ -66,18 +71,23 @@ const ConnectWalletWrapper = styled(FlexColumnWrapper)`
       font-family: "Poppins";
       color: #ffffff;
       height: 48px;
-      width: fit-content;
       font-size: 16px;
-      padding: 8px;
-      /* padding: 10px 20px 10px 20px; */
-      /* text-decoration: none; */
+      padding: 8px 32px;
+      transition: all 0.3s;
+      &:hover {
+        background: #80ba02;
+        color: #000;
+        transform: translateY(-3px);
+        transition: all 0.3s;
+      }
     }
   }
   .css-input {
     background: rgba(255, 255, 255, 0.05);
     width: 70%;
     padding: 10px 24px;
-    border: 2px solid #adff01;
+    height: 24px;
+    border: 1px solid #adff01;
     border-radius: 12px;
     color: #ffffff;
   }
@@ -95,10 +105,16 @@ const ConnectWalletWrapper = styled(FlexColumnWrapper)`
 const ConnectWallet = ({ switchPage, setWalletAddress, walletAddress }) => {
   const errNotify = () =>
     toast("Please add a valid address", { theme: "dark" });
+
+  console.log(walletAddress, "wallet address");
   return (
     <ConnectWalletWrapper>
-      <EchoreLoader className="echore-loader" />
-      <div className="t-echore">ECHORE</div>
+      <video autoPlay playbackSpeed={4} className="echore-loader" loop>
+        <source src={EchoreLoader} className="echore-loader" type="video/mp4" />
+      </video>
+      {/* <video src={EchoreLoader} alt="echore-loader" className="echore-loader" /> */}
+      {/* <div className="t-echore">ECHORE</div> */}
+      <EchoreText className="t-echore" />
       <div className="divider" />
       <div className="t-track">
         Track all your transactions on mantle network.

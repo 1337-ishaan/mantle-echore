@@ -10,14 +10,16 @@ import { ethers } from "ethers";
 import React from "react";
 
 const PageWrapper = styled.div`
-  width: 300px;
+  width: 315px;
+  height: 488px;
   border-radius: 24px;
+  /* padding: 0 12px; */
   /* height: 500px; */
   display: flex;
+  /* padding: 0 12px; */
 
   border: 2px solid #eee;
-  justify-content: center;
-  margin: 10% auto;
+  /* justify-content: center; */
   background: #000;
   /* padding: 8px; */
 

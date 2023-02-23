@@ -5,13 +5,14 @@ import { ReactComponent as ArrowLeft } from "../../assets/arrow-left.svg";
 
 const ScreenHeaderWrapper = styled(FlexRowWrapper)`
   background: rgba(255, 255, 255, 0.1);
-  padding: 12px 0px;
+
   align-items: center;
   column-gap: 14px;
-  width: 280px;
+
+  overflow: hidden;
 
   .arrow-left {
-    width: 12px;
+    width: 8px;
     cursor: pointer;
   }
   .t-title {

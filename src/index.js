@@ -42,7 +42,7 @@ root.render(
         theme={darkTheme()}
         coolMode
       > */}
-    {/* <ToastContainer /> */}
+    <ToastContainer />
 
     <App />
     {/* </RainbowKitProvider>
