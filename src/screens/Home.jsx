@@ -51,6 +51,14 @@ const HomeWrapper = styled.div`
     line-height: 18px;
     color: #ffffff;
   }
+  .scroll-wrapper-1 {
+    max-height: 100px;
+    padding: 0 12px;
+    /* padding: 0 20px; */
+    overflow-y: scroll;
+    width: 100%;
+    overflow-x: hidden;
+  }
   table {
     padding: 0 8px;
     width: 100%;
@@ -72,7 +80,7 @@ const HomeWrapper = styled.div`
       border-radius: 20px;
     }
     .scroll-wrapper {
-      max-height: 210px;
+      height: 160px;
       /* padding: 0 20px; */
       overflow-y: scroll;
       width: 100%;
@@ -178,7 +186,7 @@ const Home = ({ switchPage, walletAddress }) => {
       <FlexColumnWrapper className="transactions-wrapper">
         <div className="t-transaction">Processing Transactions</div>
 
-        <div className="scroll-wrapper">
+        <div className="scroll-wrapper-1">
           {pendingEvents.length > 0 ? (
             pendingEvents.map((e) => (
               <TrxItem
