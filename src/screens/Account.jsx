@@ -33,11 +33,11 @@ const AccountWrapper = styled.div`
     font-size: 12px;
     text-align: center;
     color: #000000;
-    background: #adff01;
+    background: rgba(15, 255, 236, 0.5);
     border-radius: 16px;
     height: fit-content;
     width: fit-content;
-    padding: 2px;
+    padding: 3px 6px;
   }
   ${FlexRowWrapper} {
     align-items: center;
@@ -53,7 +53,8 @@ const AccountWrapper = styled.div`
 
     background: rgba(255, 255, 255, 0.1);
 
-    box-shadow: -3px 0px 0px #adff01;
+    box-shadow: -3px 0px 0px rgba(15, 255, 236, 0.5);
+
     border-radius: 20px;
   }
 `;

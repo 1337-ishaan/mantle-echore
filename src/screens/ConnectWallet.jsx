@@ -1,11 +1,11 @@
 import React from "react";
-import EchoreLoader from "../assets/echore-loader.mp4";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
-import FlexColumnWrapper from "../wrappers/FlexColumnWrapper";
-import styled from "styled-components";
 import { toast } from "react-toastify";
-import Blockies from "react-blockies";
+import styled from "styled-components";
+import EchoreLoader from "../assets/echore-loader.mp4";
 import { ReactComponent as EchoreText } from "../assets/echore-text.svg";
+import { ReactComponent as WalletIcon } from "../assets/wallet.svg";
+
+import FlexColumnWrapper from "../wrappers/FlexColumnWrapper";
 
 const ConnectWalletWrapper = styled(FlexColumnWrapper)`
   justify-content: center;
@@ -23,6 +23,7 @@ const ConnectWalletWrapper = styled(FlexColumnWrapper)`
     font-family: "Inter";
     font-style: normal;
     font-weight: 600;
+
     font-size: 24px;
     color: #ffffff;
     letter-spacing: 8px;
@@ -52,8 +53,10 @@ const ConnectWalletWrapper = styled(FlexColumnWrapper)`
     align-items: center;
     column-gap: 8px;
     margin-top: 8px;
-
     .go-to-button {
+      display: flex;
+      column-gap: 8px;
+      align-items: center;
       /* background: #34d991;
       background-image: -webkit-linear-gradient(top, #34d991, #244032);
       background-image: -moz-linear-gradient(top, #34d991, #244032);
@@ -74,9 +77,9 @@ const ConnectWalletWrapper = styled(FlexColumnWrapper)`
       font-size: 16px;
       padding: 8px 32px;
       transition: all 0.3s;
+
       &:hover {
-        background: #80ba02;
-        color: #000;
+        background: rgba(15, 255, 236, 0.5);
         transform: translateY(-3px);
         transition: all 0.3s;
       }
@@ -84,10 +87,10 @@ const ConnectWalletWrapper = styled(FlexColumnWrapper)`
   }
   .css-input {
     background: rgba(255, 255, 255, 0.05);
-    width: 70%;
+    width: 75%;
     padding: 10px 24px;
     height: 24px;
-    border: 1px solid #adff01;
+    border: 2px solid rgba(15, 255, 236, 0.5);
     border-radius: 12px;
     color: #ffffff;
   }
@@ -98,7 +101,7 @@ const ConnectWalletWrapper = styled(FlexColumnWrapper)`
     border-radius: 50%;
   }
   .divider {
-    border: 1px solid #adff01;
+    border: 1px solid rgba(15, 255, 236, 0.5);
     width: 60px;
   }
 `;
@@ -133,7 +136,7 @@ const ConnectWallet = ({ switchPage, setWalletAddress, walletAddress }) => {
             walletAddress.length === 42 ? () => switchPage("home") : errNotify
           }
         >
-          Track Wallet
+          Track Wallet <WalletIcon className="wallet-icon" />
         </button>
         {/* <button
           onClick={

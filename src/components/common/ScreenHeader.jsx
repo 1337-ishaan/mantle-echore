@@ -7,6 +7,7 @@ const ScreenHeaderWrapper = styled(FlexRowWrapper)`
   background: rgba(255, 255, 255, 0.1);
 
   align-items: center;
+  padding: 12px;
   column-gap: 14px;
 
   overflow: hidden;
@@ -25,10 +26,18 @@ const ScreenHeaderWrapper = styled(FlexRowWrapper)`
     color: #c1c7cd;
   }
 `;
-const ScreenHeader = ({ switchPage, title = "Transaction Details" }) => {
+const ScreenHeader = ({
+  switchPage,
+  switchPageTo,
+  title = "Transaction Details",
+}) => {
   return (
     <ScreenHeaderWrapper>
-      <div onClick={() => switchPage("connect-wallet")}>
+      <div
+        onClick={() =>
+          switchPage(switchPageTo ? switchPageTo : "connect-wallet")
+        }
+      >
         <ArrowLeft className="arrow-left" />
       </div>
       <div className="t-title">{title}</div>

@@ -10,6 +10,7 @@ import FlexRowWrapper from "../../wrappers/FlexRowWrapper";
 const TableRowWrapper = styled(FlexRowWrapper)`
   align-items: center;
   padding: 2px;
+  width: 90%;
   margin-top: 14px;
   color: #fff;
 
@@ -34,12 +35,24 @@ const TableRowWrapper = styled(FlexRowWrapper)`
       color: orange;
     }
   }
+  transition: all 0.3s;
+  &:hover {
+    transition: all 0.3s;
+    padding: 6px;
+
+    transform: scale(1.02);
+    border-radius: 1px solid rgba(15, 255, 236, 01);
+    background: rgba(15, 255, 236, 0.2);
+    border-radius: 8px;
+
+    cursor: pointer;
+  }
 `;
 
 // /* identical to box he
-const TrxItem = ({ type, curr, amount, token, timestamp }) => {
+const TrxItem = ({ onClick, type, curr, amount, token, timestamp }) => {
   return (
-    <TableRowWrapper>
+    <TableRowWrapper onClick={onClick}>
       <FlexRowWrapper className="types-wrapper">
         {type === "Deposit" ? <DepositIcon /> : <WithdrawIcon />}
         <FlexColumnWrapper>
@@ -57,7 +70,7 @@ const TrxItem = ({ type, curr, amount, token, timestamp }) => {
             : new Date(+timestamp * 1000)
                 .toUTCString()
                 .split(" ")
-                .slice(0, 4)
+                .slice(0, 5)
                 .join(" ")}
         </div>
       </FlexColumnWrapper>

@@ -36,6 +36,8 @@ const StyledNav = styled(FlexRowWrapper)`
   }
   .blockies {
     border-radius: 50%;
+    z-index: 1;
+    cursor: pointer;
   }
 `;
 
@@ -101,7 +103,7 @@ const HomeWrapper = styled.div`
     margin: 4px auto;
     padding: 12px;
     text-transform: uppercase;
-    color: #adff01;
+    color: #0fffec;
     background: #141918;
     opacity: 0.5;
   }
@@ -119,7 +121,7 @@ const HomeWrapper = styled.div`
     cursor: pointer;
   }
 `;
-const Home = ({ switchPage, walletAddress }) => {
+const Home = ({ switchPage, walletAddress, setTrxHash }) => {
   const { baseUrl, accountEvents, pendingAccountEvents } = mantleNetwork;
 
   //React state initializers
@@ -147,10 +149,11 @@ const Home = ({ switchPage, walletAddress }) => {
       .catch(console.log);
   }, [page]);
 
-  // const loadMore = () => {
-  //   setPage(page + 1);
-  // };
-  console.log(pendingEvents, "events");
+  const onTrxClick = async (hash) => {
+    await setTrxHash(hash);
+    switchPage("transactions");
+  };
+
   return (
     <HomeWrapper>
       <StyledNav>
@@ -222,6 +225,9 @@ const Home = ({ switchPage, walletAddress }) => {
                 {events.length > 0 ? (
                   events.map((e) => (
                     <TrxItem
+                      onClick={() => {
+                        onTrxClick(e.hash);
+                      }}
                       amount={e.value}
                       type={e.from === walletAddress ? "Withdraw" : "Deposit"}
                       timestamp={e.timeStamp}
