@@ -20,13 +20,9 @@ Instead of building a dapp and solving the UX for that particular dapp, **we cre
 
 **Echore allows users to track all their transactions- ongoing and successful ones.**
 
-
-https://user-images.githubusercontent.com/109195419/222343909-ae267b32-74c4-48a7-bb18-dfd5e15ca6f7.mp4
-
-
-1. For Ongoing transactions:
+1. **For Ongoing transactions:**
     1. If you've made an ongoing transaction and it hasn't been confirmed yet, you can see how many blocks have been added to your transaction block since you included it in your order. Once enough blocks are added on top of your transaction block, the transaction is considered successful. This visibility of the transaction makes it easier for new users to trust the system.
-2. For completed transaction:
+2. **For completed transaction:**
     1. It enables users to view details of completed transactions easily. (removing the need to go and search for transactions in blockchain explorer)
 
 # Product features:
